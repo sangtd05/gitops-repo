@@ -23,12 +23,14 @@ spec:
           web:
             port: 8000
             hostPort: 80
-            expose: true
+            expose:
+              default: true
             protocol: TCP
           websecure:
             port: 8443
             hostPort: 443
-            expose: true
+            expose:
+              default: true
             protocol: TCP
         ingressClass:
           enabled: true
