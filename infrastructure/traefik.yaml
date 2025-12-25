@@ -55,6 +55,14 @@ spec:
           runAsUser: 65532
           runAsGroup: 65532
 
+        additionalVolumeMounts:
+          - name: data
+            mountPath: /data
+
+        volumes:
+          - name: data
+            emptyDir: {}
+
         ingressClass:
           enabled: true
           isDefaultClass: true
@@ -87,4 +95,3 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - PrunePropagationPolicy=foreground
-      - PruneLast=true
