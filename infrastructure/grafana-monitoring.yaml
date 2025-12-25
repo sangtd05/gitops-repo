@@ -28,19 +28,19 @@ spec:
           enabled: false
 
         metrics:
-          enabled: true
+          enabled: false
           cost:
             enabled: false
           node-exporter:
-            enabled: true
+            enabled: false
           kube-state-metrics:
-            enabled: true
+            enabled: false
         logs:
-          enabled: true
+          enabled: false
           pod_logs:
-            enabled: true
+            enabled: false
           cluster_events:
-            enabled: true
+            enabled: false
         externalServices:
           prometheus:
             host: "https://prometheus-prod-37-prod-ap-southeast-1.grafana.net"
