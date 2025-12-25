@@ -16,6 +16,8 @@ spec:
         deployment:
           kind: Deployment
           replicas: 1
+        persistence:
+          enabled: false
         hostNetwork: true
         service:
           enabled: true
