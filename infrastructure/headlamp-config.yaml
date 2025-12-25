@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: headlamp-config
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sangtd05/gitops-repo.git
+    targetRevision: main
+    path: manifests/headlamp
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
