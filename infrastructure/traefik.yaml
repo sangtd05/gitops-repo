@@ -76,6 +76,8 @@ spec:
           - "--certificatesresolvers.myresolver.acme.email=sangtd2005@gmail.com"
           - "--certificatesresolvers.myresolver.acme.storage=/certs/acme.json"
           - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+          - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+          - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
 
   destination:
     server: https://kubernetes.default.svc
