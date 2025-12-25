@@ -11,7 +11,7 @@ spec:
     path: manifests/headlamp
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: headlamp
   syncPolicy:
     automated:
       prune: true

@@ -1,8 +1,19 @@
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: headlamp-redirect-https
+  namespace: headlamp
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: headlamp-http
-  namespace: kube-system
+  namespace: headlamp
 spec:
   entryPoints:
     - web
@@ -13,14 +24,15 @@ spec:
         - name: headlamp
           port: 80
       middlewares:
-        - name: https-redirect
-          namespace: argocd
+        - name: headlamp-redirect-https
+          namespace: headlamp
+
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: headlamp-https
-  namespace: kube-system
+  namespace: headlamp
 spec:
   entryPoints:
     - websecure
