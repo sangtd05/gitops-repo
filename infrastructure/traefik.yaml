@@ -34,7 +34,7 @@ spec:
             hostPort: 443
             expose:
               default: true
-            protocol: TCP
+            protocol: TCP 
         securityContext:
           capabilities:
             drop: [ALL]
@@ -57,16 +57,16 @@ spec:
               enabled: false
         additionalArguments:
           - "--certificatesresolvers.myresolver.acme.email=sangtd2005@gmail.com"
-          - "--certificatesresolvers.myresolver.acme.storage=/data/acme.json"
+          - "--certificatesresolvers.myresolver.acme.storage=/certs/acme.json"
           - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
         volumes:
-          - name: traefik-data
+          - name: cert-store
             hostPath:
               path: /opt/traefik/data
               type: DirectoryOrCreate
         additionalVolumeMounts:
-          - name: traefik-data
-            mountPath: /data
+          - name: cert-store
+            mountPath: /certs
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
