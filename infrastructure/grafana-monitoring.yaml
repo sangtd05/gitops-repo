@@ -11,6 +11,17 @@ spec:
     targetRevision: 1.0.6
     helm:
       values: |
+        alloy:
+          replicas: 0
+        alloy-logs:
+          enabled: false
+        alloy-events:
+          enabled: false
+        prometheus-node-exporter:
+          enabled: false
+        kube-state-metrics:
+          enabled: false
+
         cluster:
           name: my-vps
         opencost:
