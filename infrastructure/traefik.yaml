@@ -16,6 +16,8 @@ spec:
         deployment:
           kind: Deployment
           replicas: 1
+        ports:
+          metrics: null
         metrics:
           prometheus:
             enabled: false
