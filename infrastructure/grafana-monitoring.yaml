@@ -12,7 +12,10 @@ spec:
     helm:
       values: |
         cluster:
-          name: sang-homelab
+          name: my-vps
+        opencost:
+          enabled: false
+
         metrics:
           enabled: true
           cost:
@@ -48,9 +51,12 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
+
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
+      - SkipDryRunOnMissingResource=true
