@@ -1,7 +1,25 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: headlamp
+  name: headlamp-http
+  namespace: kube-system
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`headlamp.sangtd.duckdns.org`)
+      kind: Rule
+      services:
+        - name: headlamp
+          port: 80
+      middlewares:
+        - name: https-redirect
+          namespace: argocd
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: headlamp-https
   namespace: kube-system
 spec:
   entryPoints:
