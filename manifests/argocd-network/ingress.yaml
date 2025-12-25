@@ -15,7 +15,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`sangtd.duckdns.org`)
+    - match: Host(`argocd.sangtd.duckdns.org`)
       kind: Rule
       services:
         - name: argocd-server
@@ -33,7 +33,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`sangtd.duckdns.org`)
+    - match: Host(`argocd.sangtd.duckdns.org`)
       kind: Rule
       services:
         - name: argocd-server
