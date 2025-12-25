@@ -20,7 +20,8 @@ spec:
         ports:
           metrics:
             port: 9101
-            expose: true
+            expose:
+              default: true
             exposedPort: 9101
             protocol: TCP
           web:
