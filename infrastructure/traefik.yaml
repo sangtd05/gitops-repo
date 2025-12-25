@@ -16,7 +16,9 @@ spec:
         deployment:
           kind: Deployment
           replicas: 1
-
+        metrics:
+          prometheus:
+            enabled: false
         persistence:
           enabled: true
           name: ssl-certs
@@ -49,7 +51,7 @@ spec:
           runAsUser: 0
           runAsGroup: 0
           capabilities:
-            add: 
+            add:
               - NET_BIND_SERVICE
               - CHOWN
               - SETUID
