@@ -9,35 +9,20 @@ spec:
   project: default
   source:
     repoURL: https://traefik.github.io/charts
-    targetRevision: 38.0.1
+    targetRevision: 34.0.0
     chart: traefik
     helm:
       values: |
         deployment:
           kind: Deployment
           replicas: 1
-          
+        hostNetwork: true
         ports:
           metrics:
             port: 9101
             expose: true
             exposedPort: 9101
             protocol: TCP
-
-        persistence:
-          enabled: true
-          name: ssl-certs
-          storageClass: "local-path"
-          accessMode: ReadWriteOnce
-          size: 128Mi
-          path: /certs
-
-        hostNetwork: true
-        service:
-          enabled: true
-          type: ClusterIP
-
-        ports:
           web:
             port: 80
             hostPort: 80
@@ -50,6 +35,18 @@ spec:
             expose:
               default: true
             protocol: TCP
+
+        persistence:
+          enabled: true
+          name: ssl-certs
+          storageClass: "local-path"
+          accessMode: ReadWriteOnce
+          size: 128Mi
+          path: /certs
+
+        service:
+          enabled: true
+          type: ClusterIP
 
         securityContext:
           runAsNonRoot: false
