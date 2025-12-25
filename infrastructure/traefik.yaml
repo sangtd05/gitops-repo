@@ -74,6 +74,7 @@ spec:
               enabled: false
 
         additionalArguments:
+          - "--metrics.prometheus=false"
           - "--certificatesresolvers.myresolver.acme.email=sangtd2005@gmail.com"
           - "--certificatesresolvers.myresolver.acme.storage=/certs/acme.json"
           - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
