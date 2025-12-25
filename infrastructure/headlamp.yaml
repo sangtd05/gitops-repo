@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://headlamp-k8s.github.io/headlamp/
-    chart: headlamp
-    targetRevision: 0.29.0
+    repoURL: https://github.com/headlamp-k8s/headlamp.git
+    path: charts/headlamp
+    targetRevision: main
     helm:
       values: |
         ingress:
