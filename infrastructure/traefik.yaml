@@ -16,11 +16,14 @@ spec:
         deployment:
           kind: Deployment
           replicas: 1
+          
         ports:
-          metrics: null
-        metrics:
-          prometheus:
-            enabled: false
+          metrics:
+            port: 9101
+            expose: true
+            exposedPort: 9101
+            protocol: TCP
+
         persistence:
           enabled: true
           name: ssl-certs
@@ -76,7 +79,6 @@ spec:
               enabled: false
 
         additionalArguments:
-          - "--metrics.prometheus=false"
           - "--certificatesresolvers.myresolver.acme.email=sangtd2005@gmail.com"
           - "--certificatesresolvers.myresolver.acme.storage=/certs/acme.json"
           - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
