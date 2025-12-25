@@ -14,7 +14,8 @@ spec:
     helm:
       values: |
         deployment:
-          kind: DaemonSet
+          kind: Deployment
+          replicas: 1
         hostNetwork: true
         service:
           enabled: true
@@ -31,13 +32,13 @@ spec:
             hostPort: 443
             expose:
               default: true
-            protocol: TCP
+            protocol: TCP 
         ingressClass:
           enabled: true
           isDefaultClass: true
         ingressRoute:
           dashboard:
-            enabled: false
+            enabled: false 
         providers:
           kubernetesCRD:
             enabled: true
