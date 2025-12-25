@@ -1,73 +1,73 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: grafana-monitoring
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://grafana.github.io/helm-charts
-    chart: k8s-monitoring
-    targetRevision: 1.0.6
-    helm:
-      values: |
-        alloy:
-          replicas: 0
-        alloy-logs:
-          enabled: false
-        alloy-events:
-          enabled: false
-        prometheus-node-exporter:
-          enabled: false
-        kube-state-metrics:
-          enabled: false
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: grafana-monitoring
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://grafana.github.io/helm-charts
+#     chart: k8s-monitoring
+#     targetRevision: 1.0.6
+#     helm:
+#       values: |
+#         alloy:
+#           replicas: 0
+#         alloy-logs:
+#           enabled: false
+#         alloy-events:
+#           enabled: false
+#         prometheus-node-exporter:
+#           enabled: false
+#         kube-state-metrics:
+#           enabled: false
 
-        cluster:
-          name: my-vps
-        opencost:
-          enabled: false
+#         cluster:
+#           name: my-vps
+#         opencost:
+#           enabled: false
 
-        metrics:
-          enabled: false
-          cost:
-            enabled: false
-          node-exporter:
-            enabled: false
-          kube-state-metrics:
-            enabled: false
-        logs:
-          enabled: false
-          pod_logs:
-            enabled: false
-          cluster_events:
-            enabled: false
-        externalServices:
-          prometheus:
-            host: "https://prometheus-prod-37-prod-ap-southeast-1.grafana.net"
-            basicAuth:
-              usernameKey: prometheus_username
-              passwordKey: prometheus_password
-            secret:
-              name: grafana-credentials
-              namespace: monitoring
-          loki:
-            host: "https://logs-prod-020.grafana.net"
-            basicAuth:
-              usernameKey: loki_username
-              passwordKey: loki_password
-            secret:
-              name: grafana-credentials
-              namespace: monitoring
+#         metrics:
+#           enabled: false
+#           cost:
+#             enabled: false
+#           node-exporter:
+#             enabled: false
+#           kube-state-metrics:
+#             enabled: false
+#         logs:
+#           enabled: false
+#           pod_logs:
+#             enabled: false
+#           cluster_events:
+#             enabled: false
+#         externalServices:
+#           prometheus:
+#             host: "https://prometheus-prod-37-prod-ap-southeast-1.grafana.net"
+#             basicAuth:
+#               usernameKey: prometheus_username
+#               passwordKey: prometheus_password
+#             secret:
+#               name: grafana-credentials
+#               namespace: monitoring
+#           loki:
+#             host: "https://logs-prod-020.grafana.net"
+#             basicAuth:
+#               usernameKey: loki_username
+#               passwordKey: loki_password
+#             secret:
+#               name: grafana-credentials
+#               namespace: monitoring
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: monitoring
 
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
-      - SkipDryRunOnMissingResource=true
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+#       - ServerSideApply=true
+#       - SkipDryRunOnMissingResource=true
