@@ -19,13 +19,12 @@ spec:
           initContainers:
             - name: volume-permissions
               image: busybox:latest
-              command: ["sh", "-c", "touch /certs/acme.json && chmod 600 /certs/acme.json && chown 65532:65532 /certs/acme.json"]
+              command: ["sh", "-c", "touch /certs/acme.json && chmod 600 /certs/acme.json && chown 0:0 /certs/acme.json"]
               volumeMounts:
                 - name: ssl-certs
                   mountPath: /certs
 
-        podSecurityContext:
-          fsGroup: 65532
+        podSecurityContext: {}
 
         persistence:
           enabled: true
@@ -55,12 +54,11 @@ spec:
             protocol: TCP
 
         securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+          runAsGroup: 0
           capabilities:
-            drop: [ALL]
-            add: [NET_BIND_SERVICE]
-          runAsNonRoot: true
-          runAsUser: 65532
-          runAsGroup: 65532
+            add: [NET_BIND_SERVICE]-
 
         ingressClass:
           enabled: true
@@ -79,7 +77,7 @@ spec:
               enabled: false
 
         additionalArguments:
-          - "--certificatesresolvers.myresolver.acme.email=sangtd2005@gmail.com"
+          - "--certificatesresolvers.myresolver.acme.email=sangtd05@gmail.com"
           - "--certificatesresolvers.myresolver.acme.storage=/certs/acme.json"
           - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
 
