@@ -1,0 +1,66 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://traefik.github.io/charts
+    targetRevision: 38.0.1
+    chart: traefik
+    helm:
+      values: |
+        deployment:
+          kind: DaemonSet
+        hostNetwork: true
+        service:
+          enabled: true
+          type: ClusterIP
+        ports:
+          web:
+            port: 8000
+            hostPort: 80
+            expose: true
+            protocol: TCP
+          websecure:
+            port: 8443
+            hostPort: 443
+            expose: true
+            protocol: TCP
+        ingressClass:
+          enabled: true
+          isDefaultClass: true
+        ingressRoute:
+          dashboard:
+            enabled: false
+        providers:
+          kubernetesCRD:
+            enabled: true
+          kubernetesIngress:
+            enabled: true
+            publishedService:
+              enabled: false
+        additionalArguments:
+          - "--certificatesresolvers.myresolver.acme.email=sangtd2005@gmail.com"
+          - "--certificatesresolvers.myresolver.acme.storage=/data/acme.json"
+          - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+        volumes:
+          - name: traefik-data
+            hostPath:
+              path: /opt/traefik/data
+              type: DirectoryOrCreate
+        additionalVolumeMounts:
+          - name: traefik-data
+            mountPath: /data
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
