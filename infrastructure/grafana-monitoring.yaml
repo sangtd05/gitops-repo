@@ -32,7 +32,7 @@ spec:
             enabled: true
         externalServices:
           prometheus:
-            host: "https://prometheus-prod-37-prod-ap-southeast-1.grafana.net/api/prom/push"
+            host: "https://prometheus-prod-37-prod-ap-southeast-1.grafana.net"
             basicAuth:
               usernameKey: prometheus_username
               passwordKey: prometheus_password
@@ -40,7 +40,7 @@ spec:
               name: grafana-credentials
               namespace: monitoring
           loki:
-            host: "https://logs-prod-020.grafana.net/loki/api/v1/push"
+            host: "https://logs-prod-020.grafana.net"
             basicAuth:
               usernameKey: loki_username
               passwordKey: loki_password
