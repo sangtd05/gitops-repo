@@ -77,7 +77,7 @@ spec:
               enabled: false
 
         additionalArguments:
-          - "--certificatesresolvers.myresolver.acme.email=sangtd05@gmail.com"
+          - "--certificatesresolvers.myresolver.acme.email=sangtd2005@gmail.com"
           - "--certificatesresolvers.myresolver.acme.storage=/certs/acme.json"
           - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
 
