@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-ingress-config
+  name: argocd-network
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/sangtd05/gitops-repo
+    repoURL: https://github.com/sangtd05/gitops-repo.git
     targetRevision: main
-    path: infrastructure/manifests/argocd
+    path: manifests/argocd-network
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
