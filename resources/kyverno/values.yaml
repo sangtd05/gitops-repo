@@ -1,9 +1,52 @@
 kyverno:
   admissionController:
     replicas: 1
+    resources:
+      limits:
+        memory: 512Mi
+        cpu: 500m
+      requests:
+        memory: 128Mi
+        cpu: 100m
+
   backgroundController:
     replicas: 1
+    resources:
+      limits:
+        memory: 512Mi
+        cpu: 500m
+      requests:
+        memory: 128Mi
+        cpu: 100m
+
   cleanupController:
     replicas: 1
+    resources:
+      limits:
+        memory: 128Mi
+        cpu: 100m
+      requests:
+        memory: 64Mi
+        cpu: 50m
+
   reportsController:
     replicas: 1
+    resources:
+      limits:
+        memory: 512Mi
+        cpu: 500m
+      requests:
+        memory: 128Mi
+        cpu: 100m
+
+  cleanupJobs:
+    admissionReports:
+      image:
+        registry: docker.io
+        repository: bitnami/kubectl
+        tag: 1.31.1-debian-12-r2
+    clusterAdmissionReports:
+      image:
+        registry: docker.io
+        repository: bitnami/kubectl
+        tag: 1.31.1-debian-12-r2
