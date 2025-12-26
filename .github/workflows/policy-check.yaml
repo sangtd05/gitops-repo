@@ -1,11 +1,13 @@
 name: Policy Check
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
     paths:
       - 'resources/**'
+      - '.github/workflows/**'
 
 jobs:
   kyverno-check:
