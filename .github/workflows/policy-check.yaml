@@ -21,9 +21,19 @@ jobs:
         with:
           release: v1.12.0
 
+      - name: Render Helm Charts
+        run: |
+          mkdir -p rendered-manifests
+          find resources -name Chart.yaml | while read chart; do
+            dir=$(dirname "$chart")
+            echo "Rendering chart in $dir..."
+            helm dependency build "$dir" || true
+            helm template "$dir" >> rendered-manifests/all.yaml
+            echo "---" >> rendered-manifests/all.yaml
+          done
+
       - name: Apply Policy Check
         run: |
           echo "Checking policies against resources..."
-          # Apply policies in resources/policies against all manifests in resources/
-          # This simulates admission control
-          kyverno apply resources/policies --resource resources/ --policy-report=true --detailed-results=true
+          # Apply policies in resources/policies against rendered manifests
+          kyverno apply resources/policies --resource rendered-manifests/all.yaml --policy-report=true --detailed-results=true
