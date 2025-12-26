@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`100.65.51.248`)
+    - match: Host(`100.65.51.248`) || Host(`argocd.local`)
       kind: Rule
       services:
         - name: argocd-server
