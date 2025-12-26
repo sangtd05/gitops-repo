@@ -12,3 +12,4 @@ spec:
       services:
         - name: argocd-server
           port: 443
+          serversTransport: skip-tls-verify
