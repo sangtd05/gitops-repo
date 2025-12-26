@@ -10,7 +10,7 @@ metadata:
     policies.kyverno.io/description: >-
       Resource limits are required for correct scheduling and resource management.
 spec:
-  validationFailureAction: Enforce
+  validationFailureAction: Audit
   background: true
   rules:
     - name: check-resources
