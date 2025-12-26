@@ -19,6 +19,14 @@ spec:
           - resources:
               kinds:
                 - Pod
+      exclude:
+        any:
+          - resources:
+              namespaces:
+                - kube-system
+                - argocd
+                - kyverno
+                - monitoring
       validate:
         message: "Pod này thiếu Resource Limit. Vui lòng bổ sung resources.limits để có thể triển khai."
         pattern:
