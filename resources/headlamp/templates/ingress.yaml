@@ -22,7 +22,7 @@ spec:
       kind: Rule
       services:
         - name: headlamp
-          port: 4466
+          port: 80
 
 # ---
 # apiVersion: traefik.io/v1alpha1
