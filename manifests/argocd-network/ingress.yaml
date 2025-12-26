@@ -6,12 +6,11 @@ metadata:
 spec:
   entryPoints:
     - web
-    - websecure
   routes:
     - match: Host(`100.65.51.248`) || Host(`argocd.local`)
       kind: Rule
+      # middlewares:
+      #   - name: netbird-only
       services:
         - name: argocd-server
-          port: 443
-          serversTransport: skip-tls-verify
-  tls: {}
+          port: 80
