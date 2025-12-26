@@ -7,11 +7,11 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`100.65.51.248`) || Host(`argocd.local`)
+    - match: Host(`100.65.51.248`)
       kind: Rule
       services:
         - name: argocd-server
-          port: 80
+          port: 8080
 ---
 apiVersion: v1
 kind: ConfigMap

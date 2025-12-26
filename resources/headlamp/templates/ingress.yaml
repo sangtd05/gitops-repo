@@ -9,23 +9,20 @@
 #     permanent: true
 
 # ---
-# apiVersion: traefik.io/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: headlamp-http
-#   namespace: headlamp
-# spec:
-#   entryPoints:
-#     - web
-#   routes:
-#     - match: Host(`headlamp.sangtd.duckdns.org`)
-#       kind: Rule
-#       services:
-#         - name: headlamp
-#           port: 80
-#       middlewares:
-#         - name: headlamp-redirect-https
-#           namespace: headlamp
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: headlamp-http
+  namespace: headlamp
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`100.65.51.248`)
+      kind: Rule
+      services:
+        - name: headlamp
+          port: 4466
 
 # ---
 # apiVersion: traefik.io/v1alpha1

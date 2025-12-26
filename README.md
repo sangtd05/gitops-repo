@@ -2,7 +2,7 @@
 
 Welcome to the GitOps repository for maintaining the infrastructure and application state of our Kubernetes cluster. This repository leverages [ArgoCD](https://argoproj.github.io/argo-cd/) to ensure that the live state of the cluster always matches the desired state defined in this git repository.
 
-## 📂 Project Structure
+## Project Structure
 
 The repository is organized to separate ArgoCD configuration from the actual Kubernetes resources, promoting clarity and scalability.
 
@@ -21,7 +21,7 @@ The repository is organized to separate ArgoCD configuration from the actual Kub
     └── root.yaml         # The Root App (App-of-Apps) that kicks everything off
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -45,7 +45,7 @@ To start managing the cluster with this GitOps repo, simply apply the root appli
 
     ArgoCD will now detect the `infrastructure-root` application, which points to the `apps/infrastructure` directory. It will then sync and deploy all applications found there, which in turn will deploy the resources found in `resources/`.
 
-## 🛠️ Adding a New Application
+## Adding a New Application
 
 1.  **Create Resources**: Add your Kubernetes manifests (Deployment, Service, Ingress, etc.) or Helm chart values to a new directory in `resources/<app-name>`.
 2.  **Define Application**: Create a new ArgoCD Application YAML in `apps/infrastructure/<app-name>.yaml`.
@@ -53,7 +53,7 @@ To start managing the cluster with this GitOps repo, simply apply the root appli
     - Set the `destination.namespace` to where you want the app to run.
 3.  **Commit & Push**: Commit your changes to the `main` branch. ArgoCD will automatically detect the new Application definition and sync it.
 
-## 📦 Wrapper Chart Pattern
+## Wrapper Chart Pattern
 
 For third-party Helm charts (like Traefik, Prometheus, etc.), we use the **Wrapper Chart Pattern**. instead of defining huge `values` blocks inside the ArgoCD Application manifest.
 
