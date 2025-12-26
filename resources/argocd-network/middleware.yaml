@@ -7,20 +7,3 @@ spec:
   ipWhiteList:
     sourceRange:
       - 100.64.0.0/10
-# ---
-# apiVersion: traefik.io/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: argocd-server-internal
-#   namespace: argocd
-# spec:
-#   entryPoints:
-#     - web
-#   routes:
-#     - match: Host(`100.65.51.248`)
-#       kind: Rule
-#       middlewares:
-#         - name: netbird-only
-#       services:
-#         - name: argocd-server
-#           port: 80
