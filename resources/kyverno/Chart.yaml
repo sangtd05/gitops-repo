@@ -1,0 +1,10 @@
+apiVersion: v2
+name: kyverno
+description: A wrapper chart for Kyverno Policy Engine
+type: application
+version: 1.0.0
+appVersion: "1.12.5"
+dependencies:
+  - name: kyverno
+    version: 3.3.0
+    repository: https://kyverno.github.io/kyverno/
