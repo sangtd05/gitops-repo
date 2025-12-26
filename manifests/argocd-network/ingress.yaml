@@ -11,13 +11,12 @@ spec:
       kind: Rule
       services:
         - name: argocd-server
-          port: 443
-          serversTransport: skip-tls-verify
+          port: 80
 ---
-apiVersion: traefik.io/v1alpha1
-kind: ServersTransport
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: skip-tls-verify
+  name: argocd-cmd-params-cm
   namespace: argocd
-spec:
-  insecureSkipVerify: true
+data:
+  server.insecure: "true"
