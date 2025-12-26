@@ -1,43 +1,14 @@
 apiVersion: traefik.io/v1alpha1
-kind: ServersTransport
-metadata:
-  name: skip-tls-verify
-  namespace: argocd
-spec:
-  insecureSkipVerify: true
----
-apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: argocd-server-http
+  name: argocd-server-internal
   namespace: argocd
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`argocd.sangtd.duckdns.org`)
+    - match: Host(`100.65.51.248`) || Host(`argocd.local`)
       kind: Rule
       services:
         - name: argocd-server
           port: 80
-      middlewares:
-        - name: https-redirect
-          namespace: argocd
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: argocd-server
-  namespace: argocd
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`argocd.sangtd.duckdns.org`)
-      kind: Rule
-      services:
-        - name: argocd-server
-          port: 443
-          serversTransport: skip-tls-verify
-  tls:
-    certResolver: myresolver
