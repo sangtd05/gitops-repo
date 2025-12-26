@@ -1,0 +1,48 @@
+k8s-monitoring:
+  alloy:
+    replicas: 0
+  alloy-logs:
+    enabled: false
+  alloy-events:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  kube-state-metrics:
+    enabled: false
+
+  cluster:
+    name: my-vps
+  opencost:
+    enabled: false
+
+  metrics:
+    enabled: false
+    cost:
+      enabled: false
+    node-exporter:
+      enabled: false
+    kube-state-metrics:
+      enabled: false
+  logs:
+    enabled: false
+    pod_logs:
+      enabled: false
+    cluster_events:
+      enabled: false
+  externalServices:
+    prometheus:
+      host: "https://prometheus-prod-37-prod-ap-southeast-1.grafana.net"
+      basicAuth:
+        usernameKey: prometheus_username
+        passwordKey: prometheus_password
+      secret:
+        name: grafana-credentials
+        namespace: monitoring
+    loki:
+      host: "https://logs-prod-020.grafana.net"
+      basicAuth:
+        usernameKey: loki_username
+        passwordKey: loki_password
+      secret:
+        name: grafana-credentials
+        namespace: monitoring

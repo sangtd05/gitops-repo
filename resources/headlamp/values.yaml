@@ -1,0 +1,10 @@
+headlamp:
+  ingress:
+    enabled: false
+  service:
+    type: ClusterIP
+  persistentVolume:
+    enabled: true
+    size: 1Gi
+    storageClass: local-path
+    accessMode: ReadWriteOnce
