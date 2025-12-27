@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`100.65.51.248`) || Host(`argocd.local`)
+    - match: (Host(`100.65.51.248`) || Host(`argocd.local`)) && PathPrefix(`/argocd`)
       kind: Rule
       services:
         - name: argocd-server
@@ -23,3 +23,4 @@ metadata:
     app.kubernetes.io/part-of: argocd
 data:
   server.insecure: "true"
+  server.rootpath: "/argocd"

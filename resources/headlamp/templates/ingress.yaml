@@ -19,7 +19,6 @@ spec:
   routes:
     - match: Host(`100.65.51.248`) && PathPrefix(`/headlamp`)
       kind: Rule
-      priority: 100
       middlewares:
         - name: headlamp-strip-prefix
       services:
