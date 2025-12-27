@@ -2,6 +2,13 @@ headlamp:
   serviceAccount:
     create: false
     name: headlamp-superuser
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
   ingress:
     enabled: false
   service:

@@ -1,0 +1,10 @@
+apiVersion: v2
+name: argocd-control-plane
+description: A wrapper chart for ArgoCD to manage itself
+type: application
+version: 1.0.0
+appVersion: "2.13.2"
+dependencies:
+  - name: argo-cd
+    version: 7.7.16
+    repository: https://argoproj.github.io/argo-helm
