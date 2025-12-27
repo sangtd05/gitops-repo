@@ -45,5 +45,7 @@ argo-cd:
         cpu: 500m
 
   configs:
+    params:
+      server.insecure: "true"
     secret:
       createSecret: false
