@@ -1,4 +1,14 @@
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: headlamp-strip-prefix
+  namespace: headlamp
+spec:
+  stripPrefix:
+    prefixes:
+      - /headlamp
+
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: headlamp-http
@@ -9,6 +19,8 @@ spec:
   routes:
     - match: Host(`100.65.51.248`) && PathPrefix(`/headlamp`)
       kind: Rule
+      middlewares:
+        - name: headlamp-strip-prefix
       services:
         - name: headlamp
           port: 80
