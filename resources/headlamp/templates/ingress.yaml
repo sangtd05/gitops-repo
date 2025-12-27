@@ -40,6 +40,6 @@ spec:
       kind: Rule
       services:
         - name: headlamp
-          port: 443
+          port: 80
   tls:
     certResolver: myresolver
