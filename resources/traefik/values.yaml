@@ -14,8 +14,14 @@ traefik:
     metrics:
       port: 9101
       expose:
-        default: true
+        default: false
       exposedPort: 9101
+      protocol: TCP
+    traefik:
+      port: 8080
+      expose:
+        default: false
+      exposedPort: 8080
       protocol: TCP
     web:
       port: 80
