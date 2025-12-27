@@ -18,7 +18,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`headlamp.sangtd.duckdns.org`)
+    - match: Host(`headlamp.sangtd.pp.ua`)
       kind: Rule
       middlewares:
         - name: headlamp-redirect-https
@@ -36,7 +36,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`headlamp.sangtd.duckdns.org`)
+    - match: Host(`headlamp.sangtd.pp.ua`)
       kind: Rule
       services:
         - name: headlamp
