@@ -1,4 +1,7 @@
 headlamp:
+  serviceAccount:
+    create: false
+    name: headlamp-superuser
   ingress:
     enabled: false
   service:
