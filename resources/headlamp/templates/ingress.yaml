@@ -1,14 +1,13 @@
-# apiVersion: traefik.io/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: headlamp-redirect-https
-#   namespace: headlamp
-# spec:
-#   redirectScheme:
-#     scheme: https
-#     permanent: true
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: headlamp-strip-prefix
+  namespace: headlamp
+spec:
+  stripPrefix:
+    prefixes:
+      - /headlamp
 
-# ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -20,24 +19,8 @@ spec:
   routes:
     - match: Host(`100.65.51.248`) && PathPrefix(`/headlamp`)
       kind: Rule
+      middlewares:
+        - name: headlamp-strip-prefix
       services:
         - name: headlamp
           port: 80
-
-# ---
-# apiVersion: traefik.io/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: headlamp-https
-#   namespace: headlamp
-# spec:
-#   entryPoints:
-#     - websecure
-#   routes:
-#     - match: Host(`headlamp.sangtd.duckdns.org`)
-#       kind: Rule
-#       services:
-#         - name: headlamp
-#           port: 80
-#   tls:
-#     certResolver: myresolver
