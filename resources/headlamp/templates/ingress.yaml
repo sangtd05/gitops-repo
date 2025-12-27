@@ -9,6 +9,17 @@ spec:
       - /headlamp
 
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: headlamp-slash-redirect
+  namespace: headlamp
+spec:
+  redirectRegex:
+    regex: "^http://100.65.51.248/headlamp$"
+    replacement: "http://100.65.51.248/headlamp/"
+    permanent: true
+
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: headlamp-http
@@ -19,7 +30,9 @@ spec:
   routes:
     - match: Host(`100.65.51.248`) && PathPrefix(`/headlamp`)
       kind: Rule
+      priority: 100
       middlewares:
+        - name: headlamp-slash-redirect
         - name: headlamp-strip-prefix
       services:
         - name: headlamp
