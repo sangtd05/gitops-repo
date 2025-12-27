@@ -18,7 +18,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`argo.sangtd.pp.ua`)
+    - match: Host(`argo.sangtd.pp.ua`) || Host(`sangtd.pp.ua`)
       kind: Rule
       middlewares:
         - name: argocd-redirect-https
@@ -36,7 +36,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`argo.sangtd.pp.ua`)
+    - match: Host(`argo.sangtd.pp.ua`) || Host(`sangtd.pp.ua`)
       kind: Rule
       services:
         - name: argocd-server
