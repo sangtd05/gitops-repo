@@ -1,6 +1,4 @@
 headlamp:
-  config:
-    baseURL: /headlamp
   ingress:
     enabled: false
   service:
