@@ -2,6 +2,7 @@ traefik:
   deployment:
     kind: Deployment
     replicas: 1
+    healthchecksPort: 80
     resources:
       requests:
         cpu: 100m
@@ -66,6 +67,7 @@ traefik:
         enabled: false
 
   additionalArguments:
+    - "--ping.entryPoint=web"
     - "--certificatesresolvers.myresolver.acme.email=sangtd2005@gmail.com"
     - "--certificatesresolvers.myresolver.acme.storage=/certs/acme.json"
     - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
